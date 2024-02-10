@@ -22,6 +22,10 @@ Route::get('/', function () {
     return view('user.index');
 })->name('index');
 
+Route::get('/profile', function () {
+    return view('user.profile');
+})->name('profile');
+
 Route::get('/register', function () {
     return view('auth.register');
 })->name('register');
