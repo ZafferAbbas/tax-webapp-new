@@ -15,22 +15,10 @@
                     </p>
 
                     <!-- Form -->
-                    <form>
+                    <form method="POST" action="{{ route('signup') }}">
+                        @csrf
                         <div class="row">
-                            <div class="col-lg-6">
-                                <div class="mb-4">
-
-                                    <!-- Label -->
-                                    <label class="form-label">
-                                        Full name
-                                    </label>
-
-                                    <!-- Input -->
-                                    <input type="text" class="form-control" placeholder="Your full name">
-                                </div>
-                            </div>
-
-                            <div class="col-lg-6">
+                            <div class="col-lg-12">
                                 <div class="mb-4">
 
                                     <!-- Label -->
@@ -39,11 +27,11 @@
                                     </label>
 
                                     <!-- Input -->
-                                    <input type="email" class="form-control" placeholder="Your email address">
+                                    <input type="email" name="email" class="form-control"
+                                        placeholder="Your email address">
                                 </div>
                             </div>
                         </div> <!-- / .row -->
-
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="mb-4">
@@ -55,7 +43,7 @@
 
                                     <!-- Input -->
                                     <div class="input-group input-group-merge">
-                                        <input type="password" class="form-control" autocomplete="off"
+                                        <input type="password" name="password" class="form-control" autocomplete="off"
                                             data-toggle-password-input placeholder="Your password">
 
                                         <button type="button" class="input-group-text px-4 text-secondary link-primary"
@@ -74,8 +62,8 @@
 
                                     <!-- Input -->
                                     <div class="input-group input-group-merge">
-                                        <input type="password" class="form-control" autocomplete="off"
-                                            data-toggle-password-input placeholder="Your password again">
+                                        <input type="password" name="password_confirmation" class="form-control"
+                                            autocomplete="off" data-toggle-password-input placeholder="Your password again">
 
                                         <button type="button" class="input-group-text px-4 text-secondary link-primary"
                                             data-toggle-password></button>
@@ -83,30 +71,19 @@
                                 </div>
                             </div>
                         </div> <!-- / .row -->
-
                         <div class="form-check">
-
-                            <!-- Input -->
                             <input type="checkbox" class="form-check-input" id="agree">
-
-                            <!-- Label -->
                             <label class="form-check-label" for="agree">
                                 I agree with <a href="javascript: void(0);">Terms & Conditions</a> and have understood <a
                                     href="javascript: void(0);">Privacy Policy</a>
                             </label>
                         </div>
-
-
                         <div class="d-flex align-items-center justify-content-between mt-3">
-
-                            <!-- Button -->
-                            <button type="button" class="btn btn-primary">
+                            <button type="submit" class="btn btn-primary">
                                 Get started
                             </button>
-
-                            <!-- Link -->
                             <small class="mb-0 text-muted">
-                                Already registered? <a href="sign-in-illustration.html">Login</a>
+                                Already registered? <a href="{{ route('login') }}">Login</a>
                             </small>
                         </div>
                     </form>

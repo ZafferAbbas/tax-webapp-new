@@ -71,7 +71,7 @@
                         <!-- Link -->
                         <small class="mb-0 text-muted">
                             Don't have an account yet?
-                            <a href="sign-up-illustration.html" class="fw-semibold">Sign up</a>
+                            <a href="{{ route('register') }}" class="fw-semibold">Sign up</a>
                         </small>
                     </div>
                 </form>

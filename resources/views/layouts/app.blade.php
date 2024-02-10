@@ -214,7 +214,7 @@
                     <ul class="navbar-nav mb-lg-7">
                         <li class="nav-item">
                             <a class="nav-link {{ Route::currentRouteName() === 'index' ? 'active' : '' }}"
-                                href="{{ route('index') }}">
+                                href="{{ route('dashboard') }}">
                                 <img class="nav-link-icon" src="{{ url('/assets/images/icons/dashboard.svg') }}"
                                     alt="Dashboard">
                                 <span>Dashboard</span>
@@ -233,7 +233,7 @@
             <!-- HEADER -->
             <header class="container-fluid d-flex py-6 mb-4">
                 <!-- Search -->
-                <form class="d-none d-md-inline-block me-auto">
+                {{-- <form class="d-none d-md-inline-block me-auto">
                     <div class="input-group input-group-merge">
 
                         <!-- Input -->
@@ -256,7 +256,7 @@
                             </button>
                         </span>
                     </div>
-                </form>
+                </form> --}}
 
                 <!-- Top buttons -->
                 <div class="d-flex align-items-center ms-auto me-n1 me-lg-n2">
@@ -362,8 +362,8 @@
                                 role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside"
                                 aria-haspopup="true" aria-expanded="false" data-bs-offset="0,0">
                                 <div class="avatar avatar-circle avatar-sm avatar-online">
-                                    <img src="" alt="..." class="avatar-img" width="40"
-                                        height="40">
+                                    <img src="{{ url('assets/images/default/user.jpg') }}" alt="Default placeholder"
+                                        class="avatar-img" width="40" height="40">
                                 </div>
                             </a>
                             <div class="dropdown-menu">
@@ -374,8 +374,11 @@
                                                 height="40">
                                         </div>
                                         <div class="flex-grow-1 ms-3">
-                                            <h4 class="mb-0">Ellie Tucker</h4>
-                                            <p class="card-text">ellie.tucker@dashly.com</p>
+                                            <h4 class="mb-0">
+                                                {{ auth()->user()->client_details()->full_name ?? 'Error with fetching name' }}
+                                            </h4>
+                                            <p class="card-text">
+                                                {{ auth()->user()->email ?? 'Error with fetching email' }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -407,9 +410,7 @@
             <footer class="mt-auto">
                 <div class="container-fluid mt-4 mb-6 text-muted">
                     <div class="row justify-content-between">
-                        <div class="col">© Dashly. 2023 Webinning.</div>
-
-                        <div class="col-auto">v1.5.0</div>
+                        <div class="col">© Vrexx</div>
                     </div>
                     <!-- / .row -->
                 </div>

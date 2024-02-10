@@ -6,14 +6,25 @@
             <p class=" mt-2 mb-0">Hey! Let's fill out these first</p>
         </div>
 
-        <div class="card-body">
+        <!-- Display All Validation Errors at the Top -->
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        <form class="card-body" method="POST" action="{{ route('client-details.store') }}">
+            @csrf
             <div class="row mb-4">
                 <div class="col-lg-3">
                     <label for="fullName" class="col-form-label">Full Name</label>
                 </div>
 
                 <div class="col-lg">
-                    <input type="text" class="form-control" id="fullName" placeholder="First Last">
+                    <input name="full_name" type="text" class="form-control" id="fullName" placeholder="First Last">
                     <div class="invalid-feedback">Please add your full name</div>
                 </div>
             </div> <!-- / .row -->
@@ -23,8 +34,9 @@
                 </div>
 
                 <div class="col-lg">
-                    <input class="form-control" id="dateOfBirth" data-inputmask="" data-inputmask-alias="datetime"
-                        data-inputmask-inputformat="mm/dd/yyyy" inputmode="numeric" placeholder="mm/dd/yyyy">
+                    <input class="form-control" id="dateOfBirth" name="date_of_birth" data-inputmask=""
+                        data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy-mm-dd" inputmode="numeric"
+                        placeholder="yyyy-mm-dd">
                 </div> <!-- / .row -->
             </div>
 
@@ -34,8 +46,8 @@
                 </div>
 
                 <div class="col-lg">
-                    <input type="text" class="form-control" id="phone" placeholder="+x(xxx)xxx-xx-xx"
-                        data-inputmask="'mask': '+9(999)999-99-99'">
+                    <input type="text" class="form-control" id="phone" name="contact_number"
+                        placeholder="+x(xxx)xxx-xx-xx" data-inputmask="'mask': '+9(999)999-99-99'">
                     <div class="invalid-feedback">Please add your phone number</div>
                 </div>
             </div> <!-- / .row -->
@@ -46,8 +58,8 @@
                 </div>
 
                 <div class="col-lg">
-                    <input type="text" class="form-control" id="emailAddress" data-inputmask="'alias': 'email'"
-                        placeholder="_@_._">
+                    <input type="text" class="form-control" id="emailAddress" name="email"
+                        data-inputmask="'alias': 'email'" placeholder="_@_._">
                     <div class="invalid-feedback">Please add your email address</div>
                 </div>
             </div> <!-- / .row -->
@@ -57,7 +69,7 @@
                 </div>
 
                 <div class="col-lg">
-                    <input type="text" class="form-control" id="addressLine1">
+                    <input type="text" class="form-control" id="addressLine1" name="home_address">
                     <div class="invalid-feedback">Please add an address</div>
                 </div>
             </div> <!-- / .row -->
@@ -68,7 +80,7 @@
                 </div>
 
                 <div class="col-lg">
-                    <input type="text" class="form-control" id="zipCode" placeholder="0000"
+                    <input type="text" class="form-control" id="zipCode" placeholder="0000" name="zipcode"
                         data-inputmask="'mask': '9999'">
                     <div class="invalid-feedback">Please add a zip code</div>
                 </div>
@@ -80,7 +92,8 @@
                 </div>
 
                 <div class="col-lg">
-                    <select id="maritalStatus" class="form-select" autocomplete="off" data-select='{"placeholder": "..."}'>
+                    <select id="maritalStatus" name="marital_status" class="form-select" autocomplete="off"
+                        data-select='{"placeholder": "..."}'>
                         <option value="">...</option>
                         <option value="Single">Single</option>
                         <option value="Married">Married</option>
@@ -96,7 +109,7 @@
                 </div>
 
                 <div class="col-lg">
-                    <input type="text" class="form-control" id="occupation"
+                    <input type="text" class="form-control" id="occupation" name="occupation"
                         placeholder="Doctor, Engineer, Civil Servant, etc">
                     <div class="invalid-feedback">Please add an occupation</div>
                 </div>
@@ -104,20 +117,20 @@
 
             <div class="row mb-4">
                 <div class="col-lg-3">
-                    <label for="taxFN" class="col-form-label">TFN</label>
+                    <label for="taxFN" class="col-form-label">TFN (Optional)</label>
                 </div>
 
                 <div class="col-lg">
                     <input type="text" class="form-control" id="taxFN" placeholder="000-000-000"
-                        data-inputmask="'mask': '999-999-999'">
+                        name="tax_file_number" data-inputmask="'mask': '999-999-999'">
                 </div>
             </div>
 
             <div class="d-flex justify-content-end mt-5">
 
                 <!-- Button -->
-                <button type="button" class="btn btn-primary">Save</button>
+                <button type="submit" class="btn btn-primary">Save</button>
             </div>
-        </div>
+        </form>
     </div>
 @endsection
