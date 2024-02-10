@@ -23,7 +23,7 @@ Route::get('/', function () {
 })->name('index');
 
 Route::get('/profile', function () {
-    return view('user.profile');
+    return view('user.basic-details');
 })->name('profile');
 
 Route::get('/register', function () {
